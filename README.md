@@ -180,13 +180,20 @@ ship_response = server.ship do |shipment_builder|
 end
 ```
 
-
 ```ruby
 # Then use...
 response.success?
 response.form_graphic_image
 response.form_graphic_extension
 ```
+
+### Usage Note: Reference Numbers
+
+#### Shipment Level Reference Numbers
+Shipment Level Reference Numbers are only allowed for shipments that are not US to US (origin\destination) or PR to PR (origin\destination).
+
+#### Package Level Reference Numbers
+Package Level Reference Numbers are only allowed for shipments that are US to US (origin\destination) or PR to PR (origin\destination).
 
 ## Running the tests
 
