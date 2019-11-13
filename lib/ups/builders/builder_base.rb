@@ -148,6 +148,8 @@ module UPS
           org << element_with_value('Description', 'Rate')
           org << package_weight(opts[:weight], opts[:unit])
           org << package_dimensions(opts[:dimensions]) if opts[:dimensions]
+
+          add_reference_numbers_to_root(org, opts[:reference_numbers])
         end
       end
 
@@ -210,6 +212,25 @@ module UPS
           org << element_with_value('Width', dimensions[:width].to_s[0..8])
           org << element_with_value('Height', dimensions[:height].to_s[0..8])
         end
+      end
+
+      def add_reference_numbers_to_root(root, opts = [])
+        return if opts.nil? || opts.empty?
+        fail InvalidAttributeError, :reference_numbers unless opts.is_a?(Array)
+
+        opts.each do |ref|
+          add_reference_number(root, ref)
+        end
+      end
+
+      def add_reference_number(parent_root, opts = {})
+        parent_root << reference_number(opts[:code], opts[:value])
+      end
+
+      def reference_number(code, value)
+        multi_valued('ReferenceNumber',
+                     'Code' => code.to_s,
+                     'Value' => value.to_s)
       end
 
       def unit_of_measurement(unit)
