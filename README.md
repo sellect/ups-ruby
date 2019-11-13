@@ -192,8 +192,29 @@ response.form_graphic_extension
 #### Shipment Level Reference Numbers
 Shipment Level Reference Numbers are only allowed for shipments that are not US to US (origin\destination) or PR to PR (origin\destination).
 
+In this case, pass the reference numbers as an array with the `add_reference_numbers` method
+to the shipment
+
+```
+ref_numbers = [
+  { code: "OR", value: "TEST12345" }
+]
+shipment_builder.add_reference_numbers ref_numbers
+```
+
 #### Package Level Reference Numbers
 Package Level Reference Numbers are only allowed for shipments that are US to US (origin\destination) or PR to PR (origin\destination).
+
+In this case, pass the reference numbers as an array in the `reference_numbers` option
+to the package with the `add_package` method
+
+```
+ref_numbers = [
+  { code: "OR", value: "TEST12345" }
+]
+shipment_builder.add_package weight: '0.5',
+    unit: 'KGS', reference_numbers: ref_numbers
+```
 
 ## Running the tests
 
