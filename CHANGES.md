@@ -1,3 +1,10 @@
+0.10.0rc0
+-----------
+Initial release of `0-10-stable` built at `v0.9.8`
+
+**Diff**
+- https://github.com/sellect/ups-ruby/compare/v0.9.8...v0.10.0rc0
+
 0.9.8
 -----------
 **Diff**
